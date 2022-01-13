@@ -4,12 +4,12 @@ const User = require('../models/User');
 
 usersController.getUsers = async (req, res) => {
     const users = await User.find();
-    res.json ({users})
+    res.json (users)
 };
 
 usersController.createUser = async (req, res) => {
     const {userName} = req.body;
-    console.log(userName)
+    // console.log(userName)
     const newUser = new User({userName});
     await newUser.save();
     res.json ({message: 'users por POST'})

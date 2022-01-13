@@ -13,7 +13,8 @@ notesController.createNotes = async(req, res) => {
     const newNote = new Note({
         title : req.body.title,
         content: req.body.content,
-        author: req.body.author
+        author: req.body.author,
+        date: req.body.date
     })
     await newNote.save();
     res.json ({newNote})
@@ -27,11 +28,12 @@ notesController.getNote = async(req, res) => {
 };
 
 notesController.updateNote = async (req, res) => {
-    const {title, content, author} = req.body;
+    const { title, content, author, date } = req.body;
    await Note.findByIdAndUpdate(req.params.id,{ 
        title,
        content,
-       author
+       author, 
+       date
     });
     res.json ({message: '1 Note por PUT'})
 };
